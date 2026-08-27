@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Raksha Bandhan 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    font-family:Georgia, "Times New Roman", serif;
+    overflow-x:hidden;
+}
+
+body{
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(255,170,200,.12), transparent 25%),
+        linear-gradient(135deg,#180c2b,#351044,#5b174f,#210c31);
+    color:white;
+}
+
+/* Stars */
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:.7;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2; transform:scale(.7);}
+    to{opacity:1; transform:scale(1.4);}
+}
+
+/* Main */
+.container{
+    position:relative;
+    z-index:2;
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px 15px;
+}
+
+.card{
+    width:100%;
+    max-width:650px;
+    padding:38px 25px;
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:30px;
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.4),
+        inset 0 0 30px rgba(255,255,255,.04);
+
+    animation:cardIn 1.2s ease;
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(50px) scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* Rakhi */
+.rakhi{
+    font-size:65px;
+    animation:float 3s ease-in-out infinite;
+    margin-bottom:10px;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0) rotate(-4deg);}
+    50%{transform:translateY(-12px) rotate(4deg);}
+}
+
+.small-title{
+    font-size:15px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    opacity:.8;
+}
+
+h1{
+    margin-top:10px;
+    font-size:clamp(38px,10vw,70px);
+    line-height:1.05;
+
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #ffd6e7,
+        #fff,
+        #ffb5d2
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+    0%{filter:brightness(.9);}
+    50%{filter:brightness(1.4);}
+    100%{filter:brightness(.9);}
+}
+
+.subtitle{
+    margin-top:15px;
+    font-size:20px;
+    color:#ffd8e7;
+}
+
+.divider{
+    width:100px;
+    height:2px;
+    margin:25px auto;
+    background:linear-gradient(90deg,transparent,#ffb5d2,transparent);
+}
+
+/* Wish */
+.wish{
+    font-size:18px;
+    line-height:1.8;
+    color:#fff4f8;
+    margin:10px auto;
+    max-width:560px;
+}
+
+.highlight{
+    color:#ffd0e2;
+    font-weight:bold;
+}
+
+/* Button */
+button{
+    margin-top:25px;
+    padding:14px 28px;
+    border:none;
+    border-radius:50px;
+
+    background:linear-gradient(135deg,#ff7eae,#ff4f91);
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+    letter-spacing:.5px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 30px rgba(255,75,145,.35);
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 15px 35px rgba(255,75,145,.5);
+}
+
+button:active{
+    transform:scale(.95);
+}
+
+/* Hidden message */
+.hidden-message{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:
+        max-height 1.2s ease,
+        opacity 1s ease,
+        margin .8s ease;
+}
+
+.hidden-message.show{
+    max-height:500px;
+    opacity:1;
+    margin-top:25px;
+}
+
+.message-box{
+    padding:22px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.13);
+
+    color:#ffeaf2;
+    line-height:1.8;
+    font-size:17px;
+}
+
+.signature{
+    margin-top:20px;
+    font-size:20px;
+    color:#ffc3d9;
+}
+
+.footer{
+    margin-top:25px;
+    font-size:13px;
+    opacity:.55;
+}
+
+/* Floating hearts */
+.heart{
+    position:fixed;
+    bottom:-40px;
+    pointer-events:none;
+    z-index:1;
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    10%{opacity:.8;}
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Confetti */
+.confetti{
+    position:fixed;
+    top:-20px;
+    z-index:10;
+    pointer-events:none;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-20px) rotate(0deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(110vh)
+            translateX(var(--drift))
+            rotate(720deg);
+        opacity:.8;
+    }
+}
+
+/* Mobile */
+@media(max-width:600px){
+
+    .container{
+        padding:15px 10px;
+    }
+
+    .card{
+        padding:32px 18px;
+        border-radius:25px;
+    }
+
+    .rakhi{
+        font-size:55px;
+    }
+
+    .small-title{
+        font-size:12px;
+        letter-spacing:3px;
+    }
+
+    h1{
+        font-size:43px;
+    }
+
+    .subtitle{
+        font-size:17px;
+    }
+
+    .wish{
+        font-size:16px;
+        line-height:1.75;
+    }
+
+    .message-box{
+        font-size:15px;
+        line-height:1.7;
+        padding:18px;
+    }
+
+    button{
+        width:90%;
+        max-width:300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Main -->
+<div class="container">
+
+    <div class="card">
+
+        <div class="rakhi">🎀</div>
+
+        <div class="small-title">
+            A Special Message For You
+        </div>
+
+        <h1>
+            Happy<br>
+            Raksha Bandhan 💖
+        </h1>
+
+        <div class="subtitle">
+            🌙 For My Beautiful Sister 🌙
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="wish">
+            Some bonds are not measured by distance,
+            time or words. They are felt quietly in
+            the heart. ❤️
+        </p>
+
+        <p class="wish">
+            No matter how far life takes us,
+            <span class="highlight">
+                you will always be one of the most
+                precious parts of my life.
+            </span>
+        </p>
+
+        <button onclick="showWish()">
+            💌 Open Your Surprise
+        </button>
+
+        <div class="hidden-message" id="hiddenMessage">
+
+            <div class="message-box">
+
+                🌸 <b>Dear Sister,</b> 🌸
+
+                <br><br>
+
+                On this Raksha Bandhan, I just want you
+                to know how special you are to me.
+
+                <br><br>
+
+                Life may change, people may come and go,
+                and distance may sometimes keep us apart,
+                but the bond we share will always remain
+                close to my heart.
+
+                <br><br>
+
+                Thank you for every little memory,
+                every silly fight, every laugh,
+                every moment of understanding,
+                and every time you have simply been there.
+
+                <br><br>
+
+                I may not always say it,
+                but having you as my sister is truly
+                one of the beautiful gifts of my life. 🥹❤️
+
+                <br><br>
+
+                May you always smile,
+                may your dreams come true,
+                and may happiness always find its way
+                back to you.
+
+                <br><br>
+
+                <b>
+                Happy Raksha Bandhan, Sis! 🫶🏻🎀
+                </b>
+
+                <div class="signature">
+                    With lots of love ❤️
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Made with ❤️ specially for you
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   STARS
+========================= */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<80;i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left = Math.random()*100 + "%";
+    star.style.top = Math.random()*100 + "%";
+
+    star.style.animationDelay =
+        Math.random()*3 + "s";
+
+    star.style.animationDuration =
+        (1.5 + Math.random()*2) + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti(){
+
+    const confetti = document.createElement("div");
+
+    confetti.className = "confetti";
+
+    const shapes = ["🎀","💖","✨","🌸","💗","💕","⭐"];
+
+    confetti.innerHTML =
+        shapes[Math.floor(Math.random()*shapes.length)];
+
+    confetti.style.left =
+        Math.random()*100 + "vw";
+
+    confetti.style.fontSize =
+        (12 + Math.random()*18) + "px";
+
+    confetti.style.setProperty(
+        "--drift",
+        (Math.random()*200 - 100) + "px"
+    );
+
+    confetti.style.animationDuration =
+        (4 + Math.random()*4) + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(()=>{
+        confetti.remove();
+    },9000);
+}
+
+
+/* Continuous confetti */
+
+setInterval(createConfetti,180);
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts = [
+        "❤️","💗","💖","💕","💓","💞","🌸"
+    ];
+
+    heart.innerHTML =
+        hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left =
+        Math.random()*100 + "vw";
+
+    heart.style.fontSize =
+        (15 + Math.random()*20) + "px";
+
+    heart.style.animationDuration =
+        (6 + Math.random()*5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },12000);
+}
+
+setInterval(createHeart,700);
+
+
+/* =========================
+   SURPRISE BUTTON
+========================= */
+
+function showWish(){
+
+    const message =
+        document.getElementById("hiddenMessage");
+
+    message.classList.toggle("show");
+
+    /* Burst of confetti */
+
+    for(let i=0;i<80;i++){
+
+        setTimeout(()=>{
+            createConfetti();
+        },i*15);
+
+    }
+
+    /* Scroll to message */
+
+    setTimeout(()=>{
+
+        message.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+    },300);
+}
+
+</script>
+
+</body>
+</html>
